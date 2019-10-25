@@ -1,3 +1,5 @@
+# This script will install pimcore 5.8 + Coreshop 2.0 plugin
+
 docker exec -u www-data pimcore-web rm .placeholder
 docker exec -u www-data pimcore-web composer create-project pimcore/skeleton=1.3.0 .
 docker exec -u www-data pimcore-web vendor/bin/pimcore-install --admin-username=admin --admin-password=Admin@1234 --mysql-host-socket=pimcore-mysql --mysql-username=pimcore --mysql-password=pimcore --mysql-database=pimcore --no-interaction

@@ -6,7 +6,7 @@ services:
     working_dir: /pimcore
     volumes:
       - ./pimcore:/pimcore
-      - .data:/var/lib/mysql
+      - ./data/pimcore:/var/lib/mysql
       - ./docker/mysql/mysql.cnf:/etc/mysql/conf.d/pimcore.cnf
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
