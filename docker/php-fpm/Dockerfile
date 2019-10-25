@@ -34,7 +34,7 @@ RUN apt-get install -y \
         libkrb5-dev \
         g++ \
         curl libcurl4-gnutls-dev \
-        unzip libbz2-dev \
+        unzip libbz2-dev libzip-dev \
         libxslt-dev
 
 RUN apt-get install -y apt-utils \
