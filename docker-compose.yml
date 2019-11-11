@@ -21,7 +21,7 @@ services:
     container_name: pimcore-redis
 
   webserver:
-    build: docker/php-fpm
+    image: theredlabs/pimcore-web
     container_name: pimcore-web
     working_dir: /pimcore
     environment:
