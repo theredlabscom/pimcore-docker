@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+FROM php:7.3-apache
 LABEL version="1.0"
 LABEL description="This container allows developers to install pimcore 5.x easily."
 LABEL maintainer="erojas@coreshopsolutions.com"
@@ -22,7 +22,8 @@ RUN apt-get install -y \
         default-jre \
         openssl \
         libc-client-dev \
-        libxml2-dev
+        libxml2-dev \
+        cron
 
 RUN apt-get install -y \
         xfonts-75dpi \
@@ -34,14 +35,14 @@ RUN apt-get install -y \
         libkrb5-dev \
         g++ \
         curl libcurl4-gnutls-dev \
-        unzip libbz2-dev \
+        unzip libbz2-dev libzip-dev \
         libxslt-dev
 
 RUN apt-get install -y apt-utils \
         imagemagick inkscape pngnq pngcrush xvfb cabextract \
         poppler-utils xz-utils libreoffice libreoffice-math jpegoptim ffmpeg \
         html2text ghostscript exiftool wkhtmltopdf \
-        libmagickwand-dev        
+        libmagickwand-dev graphviz
 
 # # Configure, install and enable php exntesions
 # RUN docker-php-ext-install -j$(nproc) iconv
@@ -72,7 +73,7 @@ RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
 
 RUN pecl install redis \
     && pecl install xdebug \
-    && pecl install mcrypt-1.0.1 \
+    && pecl install mcrypt-1.0.2 \
     && docker-php-ext-enable redis xdebug mcrypt
 
 RUN pecl install imagick && docker-php-ext-enable imagick
