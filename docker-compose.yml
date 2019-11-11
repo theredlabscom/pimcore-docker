@@ -5,8 +5,8 @@ services:
     container_name: pimcore-mysql
     working_dir: /pimcore
     volumes:
-      - ./pimcore:/pimcore
-      - ./data/pimcore:/var/lib/mysql
+      - ./pimcore:/pimcore:delegated
+      - ./data/pimcore:/var/lib/mysql:delegated
       - ./docker/mysql/mysql.cnf:/etc/mysql/conf.d/pimcore.cnf
     environment:
       - MYSQL_ROOT_PASSWORD=mysql
@@ -28,7 +28,7 @@ services:
       - COMPOSER_MEMORY_LIMIT=-1
       - COMPOSER_ALLOW_SUPERUSER=1
     volumes:
-      - ./pimcore:/pimcore
+      - ./pimcore:/pimcore:delegated
     ports:
       - 80:80
       - 443:443
