@@ -12,7 +12,6 @@ ENV APACHE_DOCUMENT_ROOT /pimcore/web
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 RUN a2enmod rewrite
-RUN a2enmod ssl
 
 # Install Operating System Dependencies
 RUN apt-get update && apt-get upgrade -y
@@ -24,7 +23,7 @@ RUN apt-get install -y \
         openssl \
         libc-client-dev \
         libxml2-dev \
-        libedit-dev
+        cron
 
 RUN apt-get install -y \
         xfonts-75dpi \
@@ -62,9 +61,6 @@ RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install exif
 RUN docker-php-ext-install xsl
-RUN docker-php-ext-install shmop
-RUN docker-php-ext-install readline
-RUN docker-php-ext-install wddx
 
 RUN docker-php-ext-configure gd \
 	--with-freetype-dir=/usr/include/ \
