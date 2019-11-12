@@ -32,3 +32,9 @@ services:
     ports:
       - 80:80
       - 443:443
+
+  mailtrap:
+    image: eaudeweb/mailtrap
+    container_name: pimcore-mailtrap
+    ports:
+      - 8080:80
